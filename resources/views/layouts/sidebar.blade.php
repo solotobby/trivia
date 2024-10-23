@@ -41,11 +41,11 @@
         <!-- Visible only in normal mode -->
         <div class="smini-hidden text-center mx-auto">
           <a class="img-link" href="be_pages_generic_profile.html">
-            <img class="img-avatar" src="assets/media/avatars/avatar15.jpg" alt="">
+            <img class="img-avatar" src="{{ asset('assets/media/avatars/avatar15.jpg')}}" alt="">
           </a>
           <ul class="list-inline mt-3 mb-0">
             <li class="list-inline-item">
-              <a class="link-fx text-dual fs-sm fw-semibold text-uppercase" href="{{ url('dashboard') }}">{{abbreviateName(auth()->user()->name)}}</a>
+              <a class="link-fx text-dual fs-sm fw-semibold text-uppercase" href="{{ url('home') }}">{{abbreviateName(auth()->user()->name)}}</a>
             </li>
             <li class="list-inline-item">
               <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
@@ -80,11 +80,24 @@
       <div class="content-side content-side-full">
         <ul class="nav-main">
           <li class="nav-main-item">
-            <a class="nav-main-link" href="be_pages_dashboard.html">
+            <a class="nav-main-link" href="{{ route('home') }}">
               <i class="nav-main-link-icon fa fa-house-user"></i>
               <span class="nav-main-link-name">Dashboard</span>
             </a>
           </li>
+          <li class="nav-main-item">
+            <a class="nav-main-link" href="{{ route('create.game') }}">
+              <i class="nav-main-link-icon fa fa-plus"></i>
+              <span class="nav-main-link-name">Create Game</span>
+            </a>
+          </li>
+          <li class="nav-main-item">
+            <a class="nav-main-link" href="{{ route('my.games') }}">
+              <i class="nav-main-link-icon fa fa-list"></i>
+              <span class="nav-main-link-name">My Game</span>
+            </a>
+          </li>
+{{--           
           <li class="nav-main-item open">
             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
               <i class="nav-main-link-icon fa fa-award"></i>
@@ -1291,7 +1304,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> --}}
         </ul>
       </div>
       <!-- END Side Navigation -->

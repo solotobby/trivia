@@ -179,11 +179,15 @@
                     <div class="block-content">
                       <div class="form-floating mb-4">
                         <input type="text" class="form-control" id="signup-username" name="name" placeholder="Enter your username">
-                        <label class="form-label" for="signup-username">Username</label>
+                        <label class="form-label" for="signup-username">Full Name</label>
                       </div>
                       <div class="form-floating mb-4">
                         <input type="email" class="form-control" id="signup-email" name="email" placeholder="Enter your email">
                         <label class="form-label" for="signup-email">Email</label>
+                      </div>
+                      <div class="form-floating mb-4">
+                        <input type="text" class="form-control" id="signup-email" name="username" placeholder="Enter your username">
+                        <label class="form-label" for="signup-email">Username</label>
                       </div>
                       <div class="form-floating mb-4">
                         <input type="password" class="form-control" id="signup-password" name="password" placeholder="Enter your password">

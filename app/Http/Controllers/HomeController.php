@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,6 +24,7 @@ class HomeController extends Controller
     }
 
     public function userDashboard(){
-       return view('user.dashboard');
+        $games = Game::where('status', 'ACTIVE')->orderBy('created_at', 'DESC')->get();
+        return view('user.dashboard', ['games' => $games]);
     }
 }

@@ -57,14 +57,15 @@
     <!-- Stylesheets -->
 
     <!-- Codebase framework -->
-    <link rel="stylesheet" id="css-main" href="assets/css/codebase.min.css">
+    <link rel="stylesheet" id="css-main" href="{{ asset('assets/css/codebase.min.css')}}">
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
     <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
     <!-- END Stylesheets -->
 
     <!-- Load and set color theme + dark mode preference (blocking script to prevent flashing) -->
-    <script src="assets/js/setTheme.js"></script>
+    <script src="{{ asset('assets/js/setTheme.js')}}"></script>
+    @yield('styles')
   </head>
 
   <body>
@@ -121,7 +122,7 @@
 
           <!-- User Info -->
           <a class="link-fx text-body-color-dark fw-semibold fs-sm" href="be_pages_generic_profile.html">
-            John Smith
+            {{abbreviateName(auth()->user()->name)}}
           </a>
           <!-- END User Info -->
 
@@ -551,21 +552,21 @@
             <div class="dropdown d-inline-block">
               <button type="button" class="btn btn-sm btn-alt-secondary" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-user d-sm-none"></i>
-                <span class="d-none d-sm-inline-block fw-semibold">J. Smith</span>
+                <span class="d-none d-sm-inline-block fw-semibold">{{abbreviateName(auth()->user()->name)}}</span>
                 <i class="fa fa-angle-down opacity-50 ms-1"></i>
               </button>
               <div class="dropdown-menu dropdown-menu-md dropdown-menu-end p-0" aria-labelledby="page-header-user-dropdown">
                 <div class="px-2 py-3 bg-body-light rounded-top">
                   <h5 class="h6 text-center mb-0">
-                    John Smith
+                    {{abbreviateName(auth()->user()->name)}}
                   </h5>
                 </div>
                 <div class="p-2">
-                  <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="be_pages_generic_profile.html">
+                  <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="{{ url('profile') }}">
                     <span>Profile</span>
                     <i class="fa fa-fw fa-user opacity-25"></i>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_inbox.html">
+                  {{-- <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_inbox.html">
                     <span>Inbox</span>
                     <i class="fa fa-fw fa-envelope-open opacity-25"></i>
                   </a>
@@ -573,21 +574,31 @@
                     <span>Invoices</span>
                     <i class="fa fa-fw fa-file opacity-25"></i>
                   </a>
-                  <div class="dropdown-divider"></div>
+                  <div class="dropdown-divider"></div> --}}
 
                   <!-- Toggle Side Overlay -->
                   <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                  <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
+                  {{-- <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
                     <span>Settings</span>
                     <i class="fa fa-fw fa-wrench opacity-25"></i>
-                  </a>
+                  </a> --}}
                   <!-- END Side Overlay -->
 
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="op_auth_signin.html">
+                  {{-- <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="op_auth_signin.html">
                     <span>Sign Out</span>
                     <i class="fa fa-fw fa-sign-out-alt opacity-25"></i>
+                  </a> --}}
+                  <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="{{ route('logout') }}"
+                     onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                       <span>Sign Out</span>
+                       <i class="fa fa-fw fa-sign-out-alt opacity-25"></i>
                   </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      @csrf
+                  </form>
                 </div>
               </div>
             </div>
@@ -736,6 +747,8 @@
         Core libraries and functionality
         webpack is putting everything together at assets/_js/main/app.js
     -->
-    <script src="assets/js/codebase.app.min.js"></script>
+    <script src="{{ asset('assets/js/codebase.app.min.js')}}"></script>
+    @yield('scripts')
   </body>
+
 </html>

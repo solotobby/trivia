@@ -29,10 +29,10 @@
               <i class="fa fa-3x fa-globe text-primary"></i>
             </div>
             <p class="fs-lg fw-semibold mb-0">
-              3 Active
+              3
             </p>
             <p class="fs-sm fw-medium text-muted mb-0">
-              Domains
+              Available Games
             </p>
           </div>
         </a>
@@ -44,10 +44,10 @@
               <i class="fa fa-3x fa-server text-elegance"></i>
             </div>
             <p class="fs-lg fw-semibold mb-0">
-              1 VPS
+              1
             </p>
             <p class="fs-sm fw-medium text-muted mb-0">
-              Server
+             Games Played
             </p>
           </div>
         </a>
@@ -59,10 +59,10 @@
               <i class="far fa-3x fa-dot-circle text-pulse"></i>
             </div>
             <p class="fs-lg fw-semibold mb-0">
-              VIP
+              34
             </p>
             <p class="fs-sm fw-medium text-muted mb-0">
-              Plan
+              Games Created
             </p>
           </div>
         </a>
@@ -74,10 +74,10 @@
               <i class="fab fa-3x fa-cc-paypal text-gray-dark"></i>
             </div>
             <p class="fs-lg fw-semibold mb-0">
-              $49 Pending
+              49
             </p>
             <p class="fs-sm fw-medium text-muted mb-0">
-              Payment
+              Coin Balance
             </p>
           </div>
         </a>
@@ -86,7 +86,7 @@
     <!-- END Overview -->
 
     <!-- VPS -->
-    <h2 class="content-heading d-flex justify-content-between align-items-center">
+    {{-- <h2 class="content-heading d-flex justify-content-between align-items-center">
       <span>VPS (1)</span>
       <button type="button" class="btn btn-sm btn-alt-primary" onclick="Codebase.block('open', '#cb-add-server');">
         <i class="fa fa-plus opacity-50 me-1"></i> Add Server
@@ -132,8 +132,8 @@
           </div>
         </form>
       </div>
-    </div>
-    <div class="block block-rounded">
+    </div> --}}
+    {{-- <div class="block block-rounded">
       <div class="block-header block-header-default">
         <h3 class="block-title">
           vps741_game <small>Los Angeles</small>
@@ -168,13 +168,13 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
     <!-- END VPS -->
 
     <!-- Domains -->
     <h2 class="content-heading d-flex justify-content-between align-items-center">
       <span>Domains (3)</span>
-      <button type="button" class="btn btn-sm btn-alt-primary" onclick="Codebase.block('open', '#cb-add-domain');">
+      <button type="button" class="btn btn-sm btn-alt-primary" onclick="Codebase.block('open', '#cb-add-domains');">
         <i class="fa fa-plus opacity-50 me-1"></i> Add Domain
       </button>
     </h2>
@@ -210,96 +210,43 @@
         </form>
       </div>
     </div>
-    <div class="block block-rounded">
-      <div class="block-content block-content-full">
-        <div class="row align-items-center">
-          <div class="col-sm-6 py-2">
-            <h3 class="h5 fw-bold mb-2">
-              <i class="fa fa-circle text-success me-1"></i> example.com
-            </h3>
-            <p class="fs-sm mb-2">
-              <a class="me-1 mb-1" href="javascript:void(0)">DNS</a>
-              <a class="me-1 mb-1" href="javascript:void(0)">Visit</a>
-              <a class="me-1 mb-1" href="javascript:void(0)">WebFTP</a>
-              <a class="me-1 mb-1" href="javascript:void(0)">FTP</a>
-              <a class="me-1 mb-1" href="javascript:void(0)">Add IP</a>
-              <a class="me-1 mb-1" href="javascript:void(0)">Email</a>
-            </p>
-            <p class="fs-sm text-muted mb-0">
-              Expires on 15th June, 2030
-            </p>
-          </div>
-          <div class="col-sm-6 py-2 text-md-end">
-            <a class="btn btn-sm btn-outline-secondary me-1 my-1" href="javascript:void(0)">
-              <i class="fa fa-wrench opacity-50 me-1"></i> Manage
-            </a>
-            <a class="btn btn-sm btn-outline-danger me-1 my-1" href="javascript:void(0)">
-              <i class="fa fa-times opacity-50 me-1"></i> Delete
-            </a>
-          </div>
+    @foreach ($games as $game)
+   
+        <div class="block block-rounded">
+            <div class="block-content block-content-full">
+            <div class="row align-items-center">
+                <div class="col-sm-6 py-2">
+                <h3 class="h5 fw-bold mb-2" style="color: black">
+                    <i class="fa fa-circle text-success me-1"></i> {{ $game->name }}
+                </h3>
+                {{-- <p class="fs-sm mb-2">
+                    <a class="me-1 mb-1" href="javascript:void(0)">DNS</a>
+                    <a class="me-1 mb-1" href="javascript:void(0)">Visit</a>
+                    <a class="me-1 mb-1" href="javascript:void(0)">WebFTP</a>
+                    <a class="me-1 mb-1" href="javascript:void(0)">FTP</a>
+                    <a class="me-1 mb-1" href="javascript:void(0)">Add IP</a>
+                    <a class="me-1 mb-1" href="javascript:void(0)">Email</a>
+                </p> --}}
+                <p class="fs-sm text-muted mb-0">
+                    Created By &#x2022; <strong> {{ $game->user->name }} </strong>
+                </p>
+                </div>
+                <div class="col-sm-6 py-2 text-md-end">
+                <a class="btn btn-sm btn-outline-secondary me-1 my-1" href=" {{ url('game/instruction/'.$game->_id) }} ">
+                    <i class="fa fa-play opacity-50 me-1"></i> Start Playing
+                </a>
+                {{-- <a class="btn btn-sm btn-outline-danger me-1 my-1" href="#">
+                    <i class="fa fa-times opacity-50 me-1"></i> Delete
+                </a> --}}
+                </div>
+            </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="block block-rounded">
-      <div class="block-content block-content-full">
-        <div class="row align-items-center">
-          <div class="col-sm-6 py-2">
-            <h3 class="h5 fw-bold mb-2">
-              <i class="fa fa-circle text-success me-1"></i> example.co.uk
-            </h3>
-            <p class="fs-sm mb-2">
-              <a class="me-1 mb-1" href="javascript:void(0)">DNS</a>
-              <a class="me-1 mb-1" href="javascript:void(0)">Visit</a>
-              <a class="me-1 mb-1" href="javascript:void(0)">WebFTP</a>
-              <a class="me-1 mb-1" href="javascript:void(0)">FTP</a>
-              <a class="me-1 mb-1" href="javascript:void(0)">Add IP</a>
-              <a class="me-1 mb-1" href="javascript:void(0)">Email</a>
-            </p>
-            <p class="fs-sm text-muted mb-0">
-              Expires on 12th October, 2029
-            </p>
-          </div>
-          <div class="col-sm-6 py-2 text-md-end">
-            <a class="btn btn-sm btn-outline-secondary me-1 my-1" href="javascript:void(0)">
-              <i class="fa fa-wrench opacity-50 me-1"></i> Manage
-            </a>
-            <a class="btn btn-sm btn-outline-danger me-1 my-1" href="javascript:void(0)">
-              <i class="fa fa-times opacity-50 me-1"></i> Delete
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="block block-rounded">
-      <div class="block-content block-content-full">
-        <div class="row align-items-center">
-          <div class="col-sm-6 py-2">
-            <h3 class="h5 fw-bold mb-2">
-              <i class="fa fa-circle text-warning me-1"></i> example.io
-            </h3>
-            <p class="fs-sm mb-2">
-              <a class="me-1 mb-1" href="javascript:void(0)">DNS</a>
-              <a class="me-1 mb-1" href="javascript:void(0)">Visit</a>
-              <a class="me-1 mb-1" href="javascript:void(0)">WebFTP</a>
-              <a class="me-1 mb-1" href="javascript:void(0)">FTP</a>
-              <a class="me-1 mb-1" href="javascript:void(0)">Add IP</a>
-              <a class="me-1 mb-1" href="javascript:void(0)">Email</a>
-            </p>
-            <p class="fs-sm text-muted mb-0">
-              <a class="fw-semibold text-danger" href="javascript:void(0)">Expires in 1 week - Renew Today</a>
-            </p>
-          </div>
-          <div class="col-sm-6 py-2 text-md-end">
-            <a class="btn btn-sm btn-outline-secondary me-1 my-1" href="javascript:void(0)">
-              <i class="fa fa-wrench opacity-50 me-1"></i> Manage
-            </a>
-            <a class="btn btn-sm btn-outline-danger me-1 my-1" href="javascript:void(0)">
-              <i class="fa fa-times opacity-50 me-1"></i> Delete
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+ 
+    @endforeach
+    
+
+   
     <!-- END Domains -->
   </div>
 @endsection
